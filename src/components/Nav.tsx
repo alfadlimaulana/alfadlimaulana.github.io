@@ -1,44 +1,37 @@
 import { useState } from "react";
 
-function Nav() {
-  const [navColored, setNavColored] = useState(false);
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      setNavColored(true);
-    } else {
-      setNavColored(false);
-    }
-  });
+const Nav = () => {
+  const [navOpen, setnavOpen] = useState(false);
 
   return (
-    <header>
-      <nav className={`navbar navbar-expand-lg fixed-top ${navColored ? "bg-body-tertiary" : "bg-transparent"}`}>
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24" />
-          </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <div className="navbar-nav ms-auto">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-              <a className="nav-link" href="#">
-                Features
-              </a>
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
-              <a className="nav-link disabled">Disabled</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <nav className={`fixed z-50 w-full bg-brand-yellow transition-all ${navOpen ? "" : "max-sm:-translate-y-full"}`}>
+      <div className={`container py-5`}>
+        <ul className="flex items-center justify-center max-sm:flex-col max-sm:gap-4">
+          <li className="px-5 py-0 list-none">
+            <a className="text-brand-blue hover:text-brand-grey" href="#">
+              Home
+            </a>
+          </li>
+          <li className="px-5 py-0 list-none">
+            <a className="text-brand-blue hover:text-brand-grey" href="#">
+              Features
+            </a>
+          </li>
+          <li className="px-5 py-0 list-none">
+            <a className="text-brand-blue hover:text-brand-grey" href="#">
+              Pricing
+            </a>
+          </li>
+          <li className="px-5 py-0 list-none">
+            <a className="text-brand-blue hover:text-brand-grey">Disabled</a>
+          </li>
+        </ul>
+      </div>
+      <div className="absolute grid w-20 -translate-x-1/2 left-1/2 place-items-center bg-brand-yellow sm:hidden" onClick={() => setnavOpen(!navOpen)}>
+        <i className="text-black fa-solid fa-caret-down"></i>
+      </div>
+    </nav>
   );
-}
+};
 
 export default Nav;
