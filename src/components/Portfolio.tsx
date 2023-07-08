@@ -1,6 +1,4 @@
-import { AspectRatio } from "./ui/aspect-ratio";
-
-function Portfolio() {
+const Portfolio = () => {
   return (
     <section id="portfolio">
       <div className="container grid gap-4 place-items-center md:grid-cols-2">
@@ -38,6 +36,6 @@ function Portfolio() {
       </div>
     </section>
   );
-}
+};
 
 export default Portfolio;

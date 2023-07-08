@@ -1,0 +1,46 @@
+{
+  "work": [
+    {
+      "id": 1,
+      "position": "Front End Web Developer",
+      "company": "PT Docheck Bagi Indonesia",
+      "location": "Bandung, Indonesia",
+      "startDate": "Jun 2022",
+      "endDate": "Sep 2022",
+      "jobDesc": [
+        "Developed and maintained the admin's website using the Typescript and NextJS framework.",
+        "Worked in a team of 3, while collaborating with the UI/UX team and Back-end developers.",
+        "Migrated Styled-Components to TailwindCSS to make the code cleaner.",
+        "Implemented the UI/UX design of a new feature called 'Promote' from scratch."
+      ]
+    },
+    {
+      "id": 2,
+      "position": "Front End Web Developer",
+      "company": "SwitchBox",
+      "location": "Bandung, Indonesia",
+      "startDate": "Sep 2022",
+      "endDate": "Feb 2023",
+      "jobDesc": [
+        "Designed and developed Zada and County platform using PHP programming language with Laravel framework.",
+        "Designed and developed user interface and user experience for the project application.",
+        "Implemented designs into HTML, CSS, and Javascript code for the project application with the help of TailwindCSS and alpineJS library.",
+        "Ensured the quality and responsiveness of the user interface and user experience."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "school": "Padjadjaran University",
+      "major": "Computer Science",
+      "degree": "Bachelor",
+      "ipk": "3.87",
+      "maxIpk": "4.00",
+      "location": "Kab. Sumedang, Indonesia",
+      "startDate": "Aug 2020",
+      "endDate": "Jun 2024 (Expected)",
+      "desc": "Bachelor Degree in Computer Science, 3.87/4.00"
+    }
+  ]
+}
