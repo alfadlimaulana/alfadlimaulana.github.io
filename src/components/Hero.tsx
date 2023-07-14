@@ -27,7 +27,7 @@ const Hero = () => {
         </div>
         <div className="w-full md:grid place-items-center">
           <div className="max-w-xs md:max-w-md aspect-square">
-            <img src="img/alfadli.jpg" alt="" className="object-cover w-full border-4 rounded-md border-brand-yellow " />
+            <img src="img/alfadli.webp" alt="" className="object-cover w-full border-4 rounded-md border-brand-yellow " />
           </div>
         </div>
       </div>

@@ -59,10 +59,10 @@
         "Implemented designs into HTML, CSS, and Javascript code with the help of TailwindCSS & AlpineJS library.",
         "Tested and debugged the website for cross-browser and device compatibility."
       ],
-      "images": ["project/invits/invits.jpg", "project/invits/1.png", "project/invits/2.png", "project/invits/3.png", "project/invits/4.png", "project/invits/5.png"],
+      "images": ["project/invits/invits.webp", "project/invits/1.webp", "project/invits/2.webp", "project/invits/3.webp", "project/invits/4.webp", "project/invits/5.webp"],
       "link": {
         "github": "",
-        "live": "invits.co"
+        "live": "https://invits.co"
       },
       "techStack": ["php", "laravel", "tailwind", "alpine"]
     },
@@ -79,10 +79,10 @@
         "Implemented designs into HTML, CSS, and Javascript code for the project application with the help of TailwindCSS and alpineJS library",
         "Ensured the quality and responsiveness of the user interface and user experience."
       ],
-      "images": ["project/zada/zada.jpg", "project/zada/1.png", "project/zada/2.png", "project/zada/3.png", "project/zada/4.png", "project/zada/5.png"],
+      "images": ["project/zada/zada.webp", "project/zada/1.webp", "project/zada/2.webp", "project/zada/3.webp", "project/zada/4.webp", "project/zada/5.webp"],
       "link": {
         "github": "",
-        "live": "zada.co.id"
+        "live": "https://zada.co.id"
       },
       "techStack": ["php", "laravel", "tailwind", "alpine", "bootstrap"]
     },
@@ -99,7 +99,7 @@
         "Implemented designs into HTML, CSS, and Javascript code for the project application with the help of TailwindCSS and alpineJS library",
         "Ensured the quality and responsiveness of the user interface and user experience."
       ],
-      "images": ["project/county/county.jpg", "project/county/1.png", "project/county/2.png", "project/county/3.png", "project/county/4.png", "project/county/5.png"],
+      "images": ["project/county/county.webp", "project/county/1.webp", "project/county/2.webp", "project/county/3.webp", "project/county/4.webp", "project/county/5.webp"],
       "link": {
         "github": "",
         "live": "https://tramites.babahoyo.gob.ec/"
