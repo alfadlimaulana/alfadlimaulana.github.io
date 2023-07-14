@@ -1,31 +1,34 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const Nav = () => {
   const [navOpen, setnavOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <nav className={`fixed z-50 w-full bg-brand-yellow transition-all ${navOpen ? "" : "max-sm:-translate-y-full"}`}>
+    <nav className={`${location.pathname == "/" ? "fixed" : ""} z-50 w-full bg-brand-yellow transition-all ${navOpen ? "" : "max-sm:-translate-y-full"}`}>
       <div className={`container py-5`}>
         <ul className="flex items-center justify-center max-sm:flex-col max-sm:gap-4">
           <li className="px-5 py-0 list-none">
-            <a className="text-brand-blue hover:text-brand-grey" href="#hero">
+            <HashLink className="text-brand-blue hover:text-brand-grey" to="/#hero">
               About
-            </a>
+            </HashLink>
           </li>
           <li className="px-5 py-0 list-none">
-            <a className="text-brand-blue hover:text-brand-grey" href="#portfolio">
+            <HashLink className="text-brand-blue hover:text-brand-grey" to="/#portfolio">
               Portfolio
-            </a>
+            </HashLink>
           </li>
           <li className="px-5 py-0 list-none">
-            <a className="text-brand-blue hover:text-brand-grey" href="#experiences">
+            <HashLink className="text-brand-blue hover:text-brand-grey" to={`/#experiences`}>
               Track Record
-            </a>
+            </HashLink>
           </li>
           <li className="px-5 py-0 list-none">
-            <a className="text-brand-blue hover:text-brand-grey" href="#cta">
+            <HashLink className="text-brand-blue hover:text-brand-grey" to={"/#cta"}>
               Contact
-            </a>
+            </HashLink>
           </li>
         </ul>
       </div>

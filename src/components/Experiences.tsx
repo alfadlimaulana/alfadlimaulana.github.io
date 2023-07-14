@@ -1,5 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
-import data from "./data/data.json";
+import data from "./data/experiences.json";
 
 const Experiences = () => {
   return (
@@ -13,7 +13,7 @@ const Experiences = () => {
               {data.work.map((work) => {
                 return (
                   <AccordionItem value={`item-${work.id}`} className="border-0 group">
-                    <AccordionTrigger className="px-5 border-b hover:no-underline bg-brand-blue group-first:rounded-t-md group-last:border-b-0 border-brand-yellow group-last:rounded-b-md">
+                    <AccordionTrigger className="px-5 border-b hover:no-underline bg-brand-blue group-first:rounded-t-md group-last:border-b-0 border-brand-yellow group-last:rounded-b-md ">
                       <div className="flex w-full gap-1 max-md:flex-col text-start md:items-center">
                         <div className="flex gap-1 max-lg:flex-col lg:items-center lg:gap-6">
                           <span className="text-sm font-light text-brand-yellow whitespace-nowrap">
@@ -21,7 +21,9 @@ const Experiences = () => {
                           </span>
                           <h3 className="text-2xl">{work.position}</h3>
                         </div>
-                        <span className="mr-6 font-light md:ml-auto">{work.company}</span>
+                        <a href={work.companyLink} target="_blank" className="mr-6 font-light md:ml-auto hover:text-brand-yellow">
+                          {work.company}
+                        </a>
                       </div>
                     </AccordionTrigger>
                     <AccordionContent className="px-10">

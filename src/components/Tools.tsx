@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 function Tools() {
+  const toolsImg: string[] = ["php.png", "laravel.png", "tailwind.png", "alpine.png", "bootstrap.png", "codeigniter.png", "next.png", "react.png", "typescript.png"];
   return (
     <section id="tools">
       <div className="container flex gap-4 md:items-center max-md:flex-col">
@@ -12,12 +13,13 @@ function Tools() {
             options={{
               type: "loop",
               perPage: 1,
+              perMove: 1,
               gap: "12px",
               width: "100%",
               padding: "20%",
               arrows: false,
               pagination: false,
-              autoplay: false,
+              autoplay: true,
               interval: 2000,
               mediaQuery: "min",
               breakpoints: {
@@ -35,21 +37,15 @@ function Tools() {
               },
             }}
           >
-            <SplideSlide className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
-              <a>
-                <img src="img/React-icon.png" className="max-w-[60px]" />
-              </a>
-            </SplideSlide>
-            <SplideSlide className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
-              <a>
-                <img src="img/React-icon.png" className="max-w-[60px]" />
-              </a>
-            </SplideSlide>
-            <SplideSlide className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
-              <a>
-                <img src="img/React-icon.png" className="max-w-[60px]" />
-              </a>
-            </SplideSlide>
+            {toolsImg.map((toolImg, index) => {
+              return (
+                <SplideSlide className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
+                  <a>
+                    <img src={`img/${toolImg}`} className="max-w-[60px]" />
+                  </a>
+                </SplideSlide>
+              );
+            })}
           </Splide>
         </div>
       </div>

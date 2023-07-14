@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+*::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.9);
+}
+
 body {
   background-color: #393e46;
   color: #eeeeee;
@@ -17,7 +36,7 @@ h6 {
 }
 
 .sosmed {
-  @apply grid w-10 rounded-full aspect-square bg-brand-yellow place-items-center;
+  @apply grid w-12 rounded-full aspect-square bg-brand-yellow place-items-center;
 }
 
 .sosmed:hover {
@@ -25,5 +44,5 @@ h6 {
 }
 
 .sosmed-icon {
-  @apply text-2xl text-black aspect-square;
+  @apply text-xl text-black aspect-square;
 }

@@ -8,11 +8,14 @@ const Cta = () => {
         </div>
         <div>
           <div className="flex justify-center gap-2">
-            <a href="mailto:alfadlimaulana@gmail.com" target="_blank" className="!w-12 md:!w-14 sosmed">
-              <i className="sosmed-icon fa-solid fa-at"></i>
+            <a href="mailto:alfadlimaulana@gmail.com" target="_blank" className="md:!w-14 sosmed">
+              <i className="sosmed-icon fa-solid fa-at !md:text-2xl"></i>
             </a>
-            <a href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="!w-12 md:!w-14 sosmed">
-              <i className="sosmed-icon fa-brands fa-linkedin-in"></i>
+            <a href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="md:!w-14 sosmed">
+              <i className="sosmed-icon fa-brands fa-linkedin-in !md:text-2xl"></i>
+            </a>
+            <a href="https://www.instagram.com/alfadlims/" target="_blank" className="md:!w-14 sosmed">
+              <i className="sosmed-icon fa-brands fa-instagram !md:text-2xl font-bold"></i>
             </a>
           </div>
         </div>
