@@ -1,6 +1,6 @@
 const Cta = () => {
   return (
-    <section id="cta">
+    <section id="cta" className="mb-20">
       <div className="container max-md:text-center md:flex">
         <div className="w-full mb-6">
           <h1 className="mb-2 text-4xl xl:text-5xl text-brand-yellow">Want To Build A Website?</h1>

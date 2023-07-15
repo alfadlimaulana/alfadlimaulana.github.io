@@ -16,7 +16,7 @@ const Project = () => {
   })[0];
 
   return (
-    <div className="container flex flex-col justify-center min-h-screen gap-4 my-8">
+    <div className="container flex flex-col justify-center min-h-screen gap-4 py-8 sm:pt-24">
       <Hero images={getProject.images} />
       <Description {...getProject} />
     </div>

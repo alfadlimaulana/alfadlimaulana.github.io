@@ -7,7 +7,7 @@ const Nav = () => {
   const location = useLocation();
 
   return (
-    <nav className={`${location.pathname == "/" ? "fixed" : ""} z-50 w-full bg-brand-yellow transition-all ${navOpen ? "" : "max-sm:-translate-y-full"}`}>
+    <nav className={`fixed sm:h-16 z-50 w-full bg-brand-yellow transition-all ${navOpen ? "" : "max-sm:-translate-y-full"}`}>
       <div className={`container py-5`}>
         <ul className="flex items-center justify-center max-sm:flex-col max-sm:gap-4">
           <li className="px-5 py-0 list-none">
