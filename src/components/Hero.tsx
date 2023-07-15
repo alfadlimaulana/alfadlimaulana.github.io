@@ -5,14 +5,16 @@ const Hero = () => {
     <section id="hero" className="py-8">
       <div className="container flex justify-center min-h-screen gap-12 py-8 md:items-center max-md:flex-col">
         <div className="md:w-full">
-          <h1 className="text-5xl xl:text-7xl leading-[52px] mb-0.5">Alfadli Siddik</h1>
-          <h2 className="mb-4 text-3xl font-light xl:text-4xl">
-            A <TypeAnimation sequence={["Computer Science Student", 1500, "Front End Web Developer", 1500]} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
-          </h2>
-          <p className="mb-6 leading-relaxed">
-            My name is Alfadli Maulana Siddik, a highly disciplined student with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
-            create meaningful online solutions.
-          </p>
+          <div>
+            <h1 className="text-5xl xl:text-7xl leading-[52px] mb-0.5">Alfadli Siddik</h1>
+            <h2 className="mb-4 text-3xl font-light xl:text-4xl">
+              A <TypeAnimation sequence={["Computer Science Student", 1500, "Front End Web Developer", 1500]} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
+            </h2>
+            <p className="mb-6 leading-relaxed">
+              My name is Alfadli Maulana Siddik, a highly disciplined student with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
+              create meaningful online solutions.
+            </p>
+          </div>
           <div className="flex gap-2">
             <a href="mailto:alfadlimaulana@gmail.com" target="_blank" className="sosmed">
               <i className="sosmed-icon fa-solid fa-at"></i>
@@ -22,6 +24,9 @@ const Hero = () => {
             </a>
             <a href="https://www.instagram.com/alfadlims/" target="_blank" className="sosmed">
               <i className="font-bold sosmed-icon fa-brands fa-instagram"></i>
+            </a>
+            <a href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
+              <i className="mr-2 fa-solid fa-download"></i> CV
             </a>
           </div>
         </div>
