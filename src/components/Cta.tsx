@@ -8,13 +8,13 @@ const Cta = () => {
         </div>
         <div>
           <div className="flex justify-center gap-2">
-            <a href="mailto:alfadlimaulana@gmail.com" target="_blank" className="md:!w-14 sosmed">
+            <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="400" href="mailto:alfadlimaulana@gmail.com" target="_blank" className="md:!w-14 sosmed">
               <i className="sosmed-icon fa-solid fa-at !md:text-2xl"></i>
             </a>
-            <a href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="md:!w-14 sosmed">
+            <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="800" href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="md:!w-14 sosmed">
               <i className="sosmed-icon fa-brands fa-linkedin-in !md:text-2xl"></i>
             </a>
-            <a href="https://www.instagram.com/alfadlims/" target="_blank" className="md:!w-14 sosmed">
+            <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="1200" href="https://www.instagram.com/alfadlims/" target="_blank" className="md:!w-14 sosmed">
               <i className="sosmed-icon fa-brands fa-instagram !md:text-2xl font-bold"></i>
             </a>
           </div>

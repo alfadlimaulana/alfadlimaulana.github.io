@@ -12,7 +12,7 @@ const Experiences = () => {
             <Accordion type="single" collapsible className="w-full">
               {data.work.map((work) => {
                 return (
-                  <AccordionItem value={`item-${work.id}`} className="border-0 group">
+                  <AccordionItem data-aos="fade-up" data-aos-duration="2500" value={`item-${work.id}`} className="border-0 group">
                     <AccordionTrigger className="px-5 border-b hover:no-underline bg-brand-blue group-first:rounded-t-md group-last:border-b-0 border-brand-yellow group-last:rounded-b-md ">
                       <div className="flex w-full gap-1 max-md:flex-col text-start md:items-center">
                         <div className="flex gap-1 max-lg:flex-col lg:items-center lg:gap-6">
@@ -43,7 +43,7 @@ const Experiences = () => {
             <Accordion type="single" collapsible className="w-full">
               {data.education.map((edu) => {
                 return (
-                  <AccordionItem value={`item-${edu.id}`} className="border-0 group">
+                  <AccordionItem data-aos="fade-up" data-aos-duration="2500" value={`item-${edu.id}`} className="border-0 group">
                     <AccordionTrigger className="px-5 border-b hover:no-underline bg-brand-blue group-first:rounded-t-md group-last:border-b-0 border-brand-yellow group-last:rounded-b-md">
                       <div className="flex w-full gap-1 max-md:flex-col text-start md:items-center">
                         <div className="flex gap-1 max-lg:flex-col lg:items-center lg:gap-6">

@@ -78,12 +78,12 @@ export const Description = (props: Props) => {
         </div>
         <div className="flex gap-2">
           {props.link.github && (
-            <a href={props.link.github} target="_blank" className="sosmed md:!w-14">
+            <a data-aos="fade-up" data-aos-duration="2500" href={props.link.github} target="_blank" className="sosmed md:!w-14">
               <i className="!text-2xl sosmed-icon fa-solid fa-at"></i>
             </a>
           )}
           {props.link.live && (
-            <a href={props.link.live} target="_blank" className="sosmed md:!w-14">
+            <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay={props.link.github ? "400" : "0"} href={props.link.live} target="_blank" className="sosmed md:!w-14">
               <i className="!text-2xl sosmed-icon fa-solid fa-globe"></i>
             </a>
           )}
@@ -105,7 +105,7 @@ export const Description = (props: Props) => {
           <div className="flex gap-2">
             {props.techStack.map((tech, index) => {
               return (
-                <a key={index} className="grid p-2 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
+                <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay={index * 400} key={index} className="grid p-2 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
                   <img src={`../img/${getTechStack(tech)}`} className="max-w-[60px]" />
                 </a>
               );

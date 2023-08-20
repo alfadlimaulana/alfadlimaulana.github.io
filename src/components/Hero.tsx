@@ -16,21 +16,21 @@ const Hero = () => {
             </p>
           </div>
           <div className="flex gap-2">
-            <a href="mailto:alfadlimaulana@gmail.com" target="_blank" className="sosmed">
+            <a data-aos="fade-up" data-aos-duration="2500" href="mailto:alfadlimaulana@gmail.com" target="_blank" className="sosmed">
               <i className="sosmed-icon fa-solid fa-at"></i>
             </a>
-            <a href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="sosmed">
+            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="400" href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="sosmed">
               <i className="sosmed-icon fa-brands fa-linkedin-in"></i>
             </a>
-            <a href="https://www.instagram.com/alfadlims/" target="_blank" className="sosmed">
+            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="800" href="https://www.instagram.com/alfadlims/" target="_blank" className="sosmed">
               <i className="font-bold sosmed-icon fa-brands fa-instagram"></i>
             </a>
-            <a href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
+            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1200" href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
               <i className="mr-2 fa-solid fa-download"></i> CV
             </a>
           </div>
         </div>
-        <div className="w-full md:grid place-items-center">
+        <div data-aos="fade-left" data-aos-duration="2500" className="w-full md:grid place-items-center">
           <div className="max-w-xs md:max-w-md aspect-square">
             <img src="img/alfadli.webp" alt="" className="object-cover w-full border-4 rounded-md border-brand-yellow " />
           </div>
