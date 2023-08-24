@@ -1,4 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
+import { At, InstagramLogo, LinkedinLogo, DownloadSimple } from "@phosphor-icons/react";
 
 const Hero = () => {
   return (
@@ -17,16 +18,16 @@ const Hero = () => {
           </div>
           <div className="flex gap-2">
             <a data-aos="fade-up" data-aos-duration="2500" href="mailto:alfadlimaulana@gmail.com" target="_blank" className="sosmed">
-              <i className="sosmed-icon fa-solid fa-at"></i>
+              <At weight="bold" className="sosmed-icon"></At>
             </a>
             <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="400" href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="sosmed">
-              <i className="sosmed-icon fa-brands fa-linkedin-in"></i>
+              <LinkedinLogo weight="bold" className="sosmed-icon"></LinkedinLogo>
             </a>
             <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="800" href="https://www.instagram.com/alfadlims/" target="_blank" className="sosmed">
-              <i className="font-bold sosmed-icon fa-brands fa-instagram"></i>
+              <InstagramLogo weight="bold" className="sosmed-icon"></InstagramLogo>
             </a>
             <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1200" href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
-              <i className="mr-2 fa-solid fa-download"></i> CV
+              <DownloadSimple weight="bold" className="mr-2 sosmed-icon"></DownloadSimple> CV
             </a>
           </div>
         </div>

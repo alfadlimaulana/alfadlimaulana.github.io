@@ -1,3 +1,5 @@
+import { At, InstagramLogo, LinkedinLogo } from "@phosphor-icons/react";
+
 const Cta = () => {
   return (
     <section id="cta" className="mb-20">
@@ -9,13 +11,13 @@ const Cta = () => {
         <div>
           <div className="flex justify-center gap-2">
             <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="400" href="mailto:alfadlimaulana@gmail.com" target="_blank" className="md:!w-14 sosmed">
-              <i className="sosmed-icon fa-solid fa-at !md:text-2xl"></i>
+              <At weight="bold" className="sosmed-icon md:text-2xl"></At>
             </a>
             <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="800" href="https://www.linkedin.com/in/alfadlims/" target="_blank" className="md:!w-14 sosmed">
-              <i className="sosmed-icon fa-brands fa-linkedin-in !md:text-2xl"></i>
+              <LinkedinLogo weight="bold" className="sosmed-icon md:text-2xl"></LinkedinLogo>
             </a>
             <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay="1200" href="https://www.instagram.com/alfadlims/" target="_blank" className="md:!w-14 sosmed">
-              <i className="sosmed-icon fa-brands fa-instagram !md:text-2xl font-bold"></i>
+              <InstagramLogo weight="bold" className="sosmed-icon md:text-2xl"></InstagramLogo>
             </a>
           </div>
         </div>
