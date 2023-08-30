@@ -1,5 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
-import { At, InstagramLogo, LinkedinLogo, DownloadSimple } from "@phosphor-icons/react";
+import { At, InstagramLogo, LinkedinLogo, DownloadSimple, GithubLogo } from "@phosphor-icons/react";
 
 const Hero = () => {
   return (
@@ -26,7 +26,10 @@ const Hero = () => {
             <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="800" href="https://www.instagram.com/alfadlims/" target="_blank" className="sosmed">
               <InstagramLogo weight="bold" className="sosmed-icon"></InstagramLogo>
             </a>
-            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1200" href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
+            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1200" href="https://github.com/alfadlims" target="_blank" className="sosmed">
+              <GithubLogo weight="bold" className="sosmed-icon" />
+            </a>
+            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1600" href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
               <DownloadSimple weight="bold" className="mr-2 sosmed-icon"></DownloadSimple> CV
             </a>
           </div>

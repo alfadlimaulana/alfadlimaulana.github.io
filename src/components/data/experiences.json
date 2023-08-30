@@ -94,7 +94,7 @@
       "endDate": "Okt 2023",
       "desc": "County Management System is a web-based platform used by the government of Babahayo, Ecuador, for the management of specific documents. The website features two roles: Citizen and Admin. Citizens can submit document applications and make payments. Admins can manage and process the submitted documents. The Admin role is further divided into four sections: department admin, general admin, staff admin, and collection admin, each with specific access and limitations.\nCounty Management System is one of the projects I worked on for SwitchBox. I was involved in this project for 1 month as part of a team consisting of 4 people.",
       "jobDesc": [
-        "Designed and developed Zada platform using PHP programming language with Laravel framework.",
+        "Designed and developed County platform using PHP programming language with Laravel framework.",
         "Designed and developed user interface and user experience for the project application.",
         "Implemented designs into HTML, CSS, and Javascript code for the project application with the help of TailwindCSS and alpineJS library",
         "Ensured the quality and responsiveness of the user interface and user experience."

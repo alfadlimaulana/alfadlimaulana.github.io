@@ -1,4 +1,4 @@
-import { Badge } from "../../components/ui/badge";
+import { Globe, GithubLogo } from "@phosphor-icons/react";
 
 export interface Props {
   id?: number;
@@ -79,12 +79,12 @@ export const Description = (props: Props) => {
         <div className="flex gap-2">
           {props.link.github && (
             <a data-aos="fade-up" data-aos-duration="2500" href={props.link.github} target="_blank" className="sosmed md:!w-14">
-              <i className="!text-2xl sosmed-icon fa-solid fa-at"></i>
+              <GithubLogo weight="bold" className="!text-2xl sosmed-icon" />
             </a>
           )}
           {props.link.live && (
             <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay={props.link.github ? "400" : "0"} href={props.link.live} target="_blank" className="sosmed md:!w-14">
-              <i className="!text-2xl sosmed-icon fa-solid fa-globe"></i>
+              <Globe weight="bold" className="!text-2xl sosmed-icon" />
             </a>
           )}
         </div>
