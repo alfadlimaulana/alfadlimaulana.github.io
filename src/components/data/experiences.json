@@ -50,8 +50,8 @@
       "id": 1,
       "title": "Invits.co",
       "position": "Front End Web Developer, UI/UX",
-      "startDate": "Jan 2023",
-      "endDate": "Present",
+      "startDate": "2023-01-01",
+      "endDate": "2023-12-01",
       "desc": "Invits.co is a web-based wedding invitation service that can be accessed online. The website caters to two types of users, namely clients and guests. Clients have the ability to place orders, customize invitations, manage guests, and more. Guests can open the invitation through the link provided.\nInvits.co was a project we used for the 'Software Project' course, but we are currently continuing its development with the hope of turning it into a real business.",
       "jobDesc": [
         "Developed a cohesive and visually appealing UI design and Ensured the website's responsiveness and adaptability across various devices.",
@@ -70,8 +70,8 @@
       "id": 2,
       "title": "Zada",
       "position": "Front End Web Developer",
-      "startDate": "Okt 2023",
-      "endDate": "Feb 2023",
+      "startDate": "2022-10-01",
+      "endDate": "2023-02-01",
       "desc": "Zada is a web-based platform for renting boats, cars, motorcycles, and tour guides in a specific region. The website features three roles: User, Admin, and Partner. Users can place orders and manage their bookings. Admins can perform CRUD operations on the database. Partners can manage their own products and also receive payments.\nZada is one of the projects I worked on for SwitchBox. The project lasted for 5 months and was developed by a team of 3 people.",
       "jobDesc": [
         "Designed and developed Zada platform using PHP programming language with Laravel framework.",
@@ -90,8 +90,8 @@
       "id": 3,
       "title": "County Management System",
       "position": "Front End Web Developer",
-      "startDate": "Sep 2023",
-      "endDate": "Okt 2023",
+      "startDate": "2023-09-01",
+      "endDate": "2023-10-01",
       "desc": "County Management System is a web-based platform used by the government of Babahayo, Ecuador, for the management of specific documents. The website features two roles: Citizen and Admin. Citizens can submit document applications and make payments. Admins can manage and process the submitted documents. The Admin role is further divided into four sections: department admin, general admin, staff admin, and collection admin, each with specific access and limitations.\nCounty Management System is one of the projects I worked on for SwitchBox. I was involved in this project for 1 month as part of a team consisting of 4 people.",
       "jobDesc": [
         "Designed and developed County platform using PHP programming language with Laravel framework.",
