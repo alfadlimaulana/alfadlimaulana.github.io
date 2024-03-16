@@ -5,7 +5,7 @@ const Experiences = () => {
   return (
     <section id="experiences">
       <div className="container">
-        <h1 className="mb-4 text-5xl text-brand-yellow">Track Record</h1>
+        <h1 className="mb-4 text-5xl text-brand-yellow text-center">Track Record</h1>
         <div className="flex flex-col gap-4">
           <div>
             <h2 className="mb-2 text-3xl">Work Experience</h2>

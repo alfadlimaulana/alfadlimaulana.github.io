@@ -1,14 +1,13 @@
 import { Globe, GithubLogo } from "@phosphor-icons/react";
 
 export interface Props {
-  id?: number;
-  title?: string;
-  position?: string;
-  startDate?: string;
+  title: string;
+  position: string;
+  startDate: string;
   endDate?: string;
-  desc?: string;
-  jobDesc?: string[];
-  images?: string[];
+  desc: string;
+  jobDesc: string[];
+  images: string[];
   link?: {
     github?: string;
     live?: string;
@@ -46,22 +45,8 @@ const getTechStack = (props: string): string => {
       return "alpine.png";
       break;
     default:
+      return ''
       break;
-  }
-  if (props == "laravel") {
-    return "laravel.png";
-  } else if (props == "react") {
-    return "react.png";
-  } else if (props == "tailwind") {
-    return "tailwind.png";
-  } else if (props == "bootstrap") {
-    return "bootstrap.png";
-  } else if (props == "next") {
-    return "next.png";
-  } else if (props == "typescript") {
-    return "typescript.png";
-  } else if (props == "javascript") {
-    return "javascript.png";
   }
 };
 
@@ -77,12 +62,12 @@ export const Description = (props: Props) => {
           <h2 className="text-xl font-light md:text-2xl">{props.position}</h2>
         </div>
         <div className="flex gap-2">
-          {props.link.github && (
+          {props.link?.github && (
             <a data-aos="fade-up" data-aos-duration="2500" href={props.link.github} target="_blank" className="sosmed md:!w-14">
               <GithubLogo weight="bold" className="!text-2xl sosmed-icon" />
             </a>
           )}
-          {props.link.live && (
+          {props.link?.live && (
             <a data-aos="fade-left" data-aos-duration="2500" data-aos-delay={props.link.github ? "400" : "0"} href={props.link.live} target="_blank" className="sosmed md:!w-14">
               <Globe weight="bold" className="!text-2xl sosmed-icon" />
             </a>

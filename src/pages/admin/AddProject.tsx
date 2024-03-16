@@ -5,6 +5,14 @@ import { Button } from "../../components/ui/button";
 import { Label } from "../../components/ui/label";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
+import { Badge } from "../../components/ui/badge"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../components/ui/select"
 
 import { format } from "date-fns";
 import { cn } from "../../../lib/utils";
@@ -14,21 +22,27 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../components/ui/pop
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
   position: z.string().min(2).max(50),
-  startDate: z.date().min(new Date("2020-01-01")).max(new Date()),
+  startDate: z.date().min(new Date("2020-01-01")).max(new Date(new Date().getTime() + 24 * 60 * 60 * 1000)),
   endDate: z.date().min(new Date("2020-01-01")).nullable(),
   desc: z.string().min(2),
-  jobDesc: z.string().optional(),
+  jobDesc: z.array(z.object({
+    desc: z.string().min(1)
+  })),
   images: z.instanceof(FileList).refine((file) => file?.length > 0, "File is required."),
-  //   github: z.string().optional(),
-  //   live: z.string().optional(),
-  //   techStack: z.string().min(2),
-});
+  link: z.object({
+    github: z.string().optional(),
+    live: z.string().optional(),
+  }),
+  techStack: z.array(z.object({
+    tech: z.string().min(1)
+  })),
+})
 
 function AddProject() {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,24 +50,33 @@ function AddProject() {
     defaultValues: {
       title: "",
       position: "",
-      startDate: null,
+      startDate: new Date(),
       endDate: null,
       desc: "",
-      jobDesc: "",
+      jobDesc: [{desc: ""}],
       images: undefined,
-      //   github: "",
-      //   live: "",
-      //   techStack: "",
+      link: {
+        github: "",
+        live: "",
+      },
+      techStack: [{tech: ""}],
     },
-  });
+  })
 
-  // 2. Define a submit handler.
-  function submitForm(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
   }
 
+  const { control } = form;
+  const techStackFields = useFieldArray({
+    control,
+    name: "techStack"
+  })
+  const jobDescFields = useFieldArray({
+    control,
+    name: "techStack"
+  })
+  
   const fileRef = form.register("images");
 
   return (
@@ -76,7 +99,7 @@ function AddProject() {
       <div className="flex flex-col gap-9">
         <div className="rounded-sm border border-stroke bg-brand-grey shadow-default">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(submitForm)} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <div className="p-6">
                 <div className="mb-4 flex flex-col gap-6 xl:flex-row">
                   <FormField
@@ -172,33 +195,45 @@ function AddProject() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="jobDesc"
-                  render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel>Job Description</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          id="jobDesc"
-                          placeholder="Sebutkan dengan titik koma sebagai pemisah (ex: mengerjakan ...;bertanggung jawab ...)"
-                          className="text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="flex flex-col gap-3">
+                  <FormLabel>Job Description</FormLabel>
+                  {
+                    jobDescFields.fields.map((item, index) => {
+                      return (
+                        <div key={item.id} className="flex items-stretch">
+                          <div className="w-full">
+                            <FormField
+                              control={form.control}
+                              name={`jobDesc.${index}.desc`}
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Textarea
+                                      id="jobDesc"
+                                      placeholder="Sebutkan dengan titik koma sebagai pemisah (ex: mengerjakan ...;bertanggung jawab ...)"
+                                      className={`text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0 ${(index > 0 && "rounded-r-none")}`}
+                                      {...field}
+                                    />
+                                  </FormControl>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                          </div>
 
-                {/* <div className="flex justify-end gap-2 font-normal">
-                  <Button variant="default" className="">
-                    -
-                  </Button>
-                  <Button variant="default" className="">
+                          { (index > 0) && 
+                          <Button type="button" size="custom" onClick={() => jobDescFields.remove(index)} variant="outline" className="border-red-500 rounded-l-none px-6">
+                            -
+                          </Button>
+                          }
+                        </div>
+                      )
+                    })
+                  }
+                  <Button type="button" onClick={() => jobDescFields.append({tech: ''})} variant="default" className="self-end px-6 py-2 h-fit">
                     +
                   </Button>
-                </div> */}
+                </div>
 
                 <FormField
                   control={form.control}
@@ -214,15 +249,15 @@ function AddProject() {
                   )}
                 />
 
-                {/* <div className="mb-4 flex flex-col gap-6 xl:flex-row">
+                <div className="mb-4 flex flex-col gap-6 xl:flex-row">
                   <FormField
                     control={form.control}
-                    name="github"
+                    name="link.github"
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel>Link Github</FormLabel>
                         <FormControl>
-                          <Input id="github" placeholder="Masukkan link github proyek" className="text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0" {...field} />
+                          <Input id="link.github" placeholder="Masukkan link github proyek" className="text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -231,21 +266,69 @@ function AddProject() {
 
                   <FormField
                     control={form.control}
-                    name="live"
+                    name="link.live"
                     render={({ field }) => (
                       <FormItem className="w-full">
                         <FormLabel>Link Website</FormLabel>
                         <FormControl>
-                          <Input id="live" placeholder="Masukkan link deploy website" className="text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0" {...field} />
+                          <Input id="link.live" placeholder="Masukkan link deploy website" className="text-white bg-transparent focus-visible:ring-brand-yellow focus-visible:ring-offset-0" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                </div> */}
+                </div>
 
-                <Button type="submit" variant="default" className="w-full py-6">
-                  Send Message
+                <div className="flex flex-col gap-4">
+                  <FormLabel>Tech Stack</FormLabel>
+                  {
+                    techStackFields.fields.map((item, index) => {
+                      return (
+                        <div key={item.id} className="flex">
+                          <FormField
+                            control={form.control}
+                            name={`techStack.${index}.tech`}
+                            render={({ field }) => (
+                              <FormItem className="w-full">
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger className={`text-white bg-transparent ring-0 ring-offset-0 focus:ring-offset-1 focus:ring-brand-yellow h-full w-full ${(index > 0) && "rounded-r-none border-r-0"}`}>
+                                      <SelectValue placeholder="Pilih teknologi yang digunakan" />
+                                    </SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent className="capitalize">
+                                    <SelectItem value="react">react</SelectItem>
+                                    <SelectItem value="next">next</SelectItem>
+                                    <SelectItem value="laravel">laravel</SelectItem>
+                                    <SelectItem value="tailwind">tailwind</SelectItem>
+                                    <SelectItem value="bootstrap">bootstrap</SelectItem>
+                                    <SelectItem value="typescript">typescript</SelectItem>
+                                    <SelectItem value="php">php</SelectItem>
+                                    <SelectItem value="codeigniter">codeigniter</SelectItem>
+                                    <SelectItem value="alpine">alpine</SelectItem>
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          { (index > 0) && 
+                          <Button type="button" onClick={() => techStackFields.remove(index)} variant="outline" className="border-red-500 rounded-l-none">
+                            -
+                          </Button>
+                          }
+                        </div>
+                      )
+                    })
+                  }
+                  <Button type="button" onClick={() => techStackFields.append({tech: ''})} variant="default" className="self-end px-6 py-2 h-fit">
+                    +
+                  </Button>
+                </div>
+
+                <Button type="submit" variant="default" className="w-full py-6 mt-8">
+                  Add Portfolio
                 </Button>
               </div>
             </form>
