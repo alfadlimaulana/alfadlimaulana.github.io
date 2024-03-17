@@ -22,6 +22,7 @@ function App() {
         <Route path="/admin/" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="add" element={<AddProject />} />
+          <Route path="edit/:id" element={<AddProject />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,18 +2,15 @@ import { ColumnDef } from "@tanstack/react-table";
 import { differenceInMonths } from "date-fns";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
+import { Link } from "react-router-dom";
 
 export type Portfolio = {
-  id: number;
+  _id: string;
   title: string;
   position: string;
   startDate: string;
   endDate: string;
-  desc: string;
-  jobDesc: string[];
-  images: string[];
   link: { github: string; live: string };
-  techStack: string[];
 };
 
 export const columns: ColumnDef<Portfolio>[] = [
@@ -47,9 +44,10 @@ export const columns: ColumnDef<Portfolio>[] = [
     id: "actions",
     header: "Aksi",
     cell: ({ row }) => {
-      const payment = row.original;
-
-      return <div>Delete</div>;
+      return <div className="flex gap-2"> 
+        <Link to={`/admin/edit/${row.original._id}`}>Edit</Link>
+        <a className="text-red-300">Delete</a>
+      </div>;
     },
   },
 ];

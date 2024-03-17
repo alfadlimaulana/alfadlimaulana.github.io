@@ -5,18 +5,20 @@ import { projects } from "../../components/data/experiences.json";
 import { DataTable } from "../../components/DataTable";
 import { Portfolio, columns } from "../../components/portfolio/columns";
 import { buttonVariants } from "../../components/ui/button";
+import axios from "axios";
 
 function Dashboard() {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
     const getProjects = async () => {
-      const res = await fetch("http://localhost:3000/api/projects");
-      
-      if (res.ok) {
-        const json = await res.json();
-        setProjects(json.data)
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/projects`);
+        setProjects(res.data.data)
+      } catch (error) {
+        console.log(error)
       }
+      
     }
 
     getProjects()
