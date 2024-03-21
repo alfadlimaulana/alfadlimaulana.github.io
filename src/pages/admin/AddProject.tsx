@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "../../components/ui/select"
 
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { cn } from "../../../lib/utils";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { Calendar } from "../../components/ui/calendar";
@@ -24,8 +24,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
-import axios from 'axios';
-import { useLocation, useParams } from "react-router-dom";
+import axios, { FormSerializerOptions } from 'axios';
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -36,7 +36,7 @@ const formSchema = z.object({
   jobDesc: z.array(z.object({
     desc: z.string().min(1)
   })),
-  images: z.instanceof(FileList).refine((file) => file?.length > 0, "File is required."),
+  images: z.union([z.instanceof(FileList), z.array(z.string())]).refine((file) => file?.length > 0, "File is required."),
   link: z.object({
     github: z.string().optional(),
     live: z.string().optional(),
@@ -46,14 +46,17 @@ const formSchema = z.object({
   })),
 })
 
-function AddProject() {
-  const params = useParams()
-  const [project, setProject] = useState({})
+type Portfolio = z.infer<typeof formSchema>
 
-  const form = useForm<z.infer<typeof formSchema>>({
+function AddProject() {
+  const navigate = useNavigate()
+  const params = useParams()
+  const addMode = !(params.id)
+
+  const form = useForm<Portfolio>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: project? "edit" : '',
+      title: "",
       position: "",
       startDate: new Date(),
       endDate: null,
@@ -68,45 +71,6 @@ function AddProject() {
     },
   })
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const formData = new FormData()
-      const {images, ...rest} = values
-      for (let i = 0; i < images.length; i++) {
-        formData.append("images", images[i])
-      }
-
-      Object.keys(rest).forEach((key) => {
-        const element = rest[key as keyof typeof rest]
-        if (element !== null && typeof element === "object" && !Array.isArray(element)) {
-          if (element instanceof Date) {
-            formData.append(`${key}`, element? format(element, 'MMMM dd, yyyy',) : '')
-          } else {
-            Object.keys(element).forEach((elementKey) => {
-              const value = element[elementKey as keyof typeof element]
-              formData.append(`${key}[${elementKey}]`,  value? value : '')
-            })
-          }
-          
-        }else if (Array.isArray(element)) {
-          element.forEach((item, index) => {
-            Object.keys(item).forEach((elementKey) => {
-              formData.append(`${key}[${index}][${elementKey}]`, element[index][elementKey as keyof typeof item])
-            })
-          })
-        } else {
-          formData.append(`${key}`, element? element : '')
-        }
-      })
-
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/projects`, formData)
-      console.log(res)
-      // console.log(formData.getAll("jobDesc[0][desc]"))
-    }catch (err) {
-      console.log(err)
-    }
-  }
-
   const { control } = form;
   const techStackFields = useFieldArray({
     control,
@@ -118,12 +82,22 @@ function AddProject() {
   })
 
   useEffect(() => {
-    console.log(params.id)
     if(params.id) {
       const getData = async () => {
         try {
-          const res = await axios.get(`${import.meta.env.VITE_API_URL}/projects/${params.id}`);
-          console.log(res.data.data)
+          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`);
+          const {_id, __v, createdAt, updatedAt, ...rest} = res.data.data
+          rest.techStack = rest.techStack.map((item: {tech:string}) => ({tech: item.tech}))
+          rest.jobDesc = rest.jobDesc.map((item: {desc:string}) => ({desc: item.desc}))
+          rest.startDate = new Date(rest.startDate)
+          rest.endDate = rest.endDate? new Date(rest.endDate) : null
+          delete rest.link._id
+          
+          const project:Portfolio = rest
+          Object.keys(project).forEach((item) => {
+            const key = item as keyof typeof project
+            form.setValue(key, rest[key])
+          });
         } catch (error) {
           console.log(error)
         }
@@ -131,8 +105,57 @@ function AddProject() {
   
       getData()
     }
-  }, [])
-  
+  }, [params.id])
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const formData = new FormData()
+      const {images, ...rest} = values
+
+      if (images instanceof FileList) {
+        for (let i = 0; i < images.length; i++) {
+          formData.append("images", images[i])
+        }
+      }
+
+      Object.keys(rest).forEach((key) => {
+        const element = rest[key as keyof typeof rest]
+        if (element !== null && typeof element === "object" && !Array.isArray(element)) {
+          if (element instanceof Date) {
+            formData.append(`${key}`, element? element.toISOString() : '')
+          } else {
+            Object.keys(element).forEach((elementKey) => {
+              const value = element[elementKey as keyof typeof element]
+              formData.append(`${key}[${elementKey}]`,  value? value : '')
+            })
+          }
+        } else if (Array.isArray(element)) {
+          element.forEach((item, index) => {
+            Object.keys(item).forEach((elementKey) => {
+              formData.append(`${key}[${index}][${elementKey}]`, element[index][elementKey as keyof typeof item])
+            })
+          })
+        } else {
+          formData.append(`${key}`, element? element : '')
+        }
+      })
+
+      if (addMode) {
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/projects`, formData)
+        if (res.data.data) {
+          navigate("/admin")
+        }
+      } else {
+        const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`, formData)
+        console.log(res)
+        // if (res.data.data) {
+        //   navigate("/admin")
+        // }
+      }
+    }catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
@@ -295,7 +318,7 @@ function AddProject() {
                   name="images"
                   render={({ field }) => (
                     <FormItem className="mb-4">
-                      <FormLabel>Job Description</FormLabel>
+                      <FormLabel>Images</FormLabel>
                       <FormControl>
                         <Input type="file" className="file:bg-brand-yellow p-0 file:h-full file:px-8 text-white bg-transparent" multiple 
                           onChange={(e) => field.onChange(e.target.files)} onBlur={field.onBlur} ref={field.ref} />
@@ -304,6 +327,15 @@ function AddProject() {
                     </FormItem>
                   )}
                 />
+
+                {
+                  !addMode && form.getValues("images") && Array.isArray(form.getValues("images")) &&
+                  <div className="mb-4 flex gap-2">
+                      { (form.getValues("images") as string[]).map((image, index) => {
+                        return <img key={index} className="h-24" src={`${import.meta.env.VITE_API_URL}/${image}`}></img>
+                      }) }
+                  </div>
+                }
 
                 <div className="mb-4 flex flex-col gap-6 xl:flex-row">
                   <FormField

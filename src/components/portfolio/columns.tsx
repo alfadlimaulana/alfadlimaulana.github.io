@@ -3,17 +3,12 @@ import { differenceInMonths } from "date-fns";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "../ui/alert-dialog";
+import axios from 'axios'
+import { Project } from "../../context/ProjectContext";
+import { useProjectsContext } from "../../hooks/useProjectContext";
 
-export type Portfolio = {
-  _id: string;
-  title: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  link: { github: string; live: string };
-};
-
-export const columns: ColumnDef<Portfolio>[] = [
+export const columns: ColumnDef<Project>[] = [
   {
     accessorKey: "title",
     header: ({ column }) => {
@@ -44,10 +39,33 @@ export const columns: ColumnDef<Portfolio>[] = [
     id: "actions",
     header: "Aksi",
     cell: ({ row }) => {
-      return <div className="flex gap-2"> 
-        <Link to={`/admin/edit/${row.original._id}`}>Edit</Link>
-        <a className="text-red-300">Delete</a>
-      </div>;
+      const { dispatch } = useProjectsContext()
+
+      const deleteProject = async () => {
+        const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/projects/${row.original._id}`)
+        dispatch({type: "REMOVE_PROJECT", payload: res.data.data})
+      }
+
+      return <>
+        <div className="flex gap-2"> 
+          <Link to={`/admin/edit/${row.original._id}`}>Edit</Link>
+          <AlertDialog>
+            <AlertDialogTrigger><span className="text-red-300">Delete</span></AlertDialogTrigger>
+            <AlertDialogContent className="bg-brand-blue">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                <AlertDialogDescription className="text-gray-300">
+                  This action cannot be undone. This will permanently remove your data from our servers.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel className="hover:bg-brand-grey hover:text-white">Cancel</AlertDialogCancel>
+                <AlertDialogAction onClick={deleteProject}>Continue</AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+        </div>
+      </>
     },
   },
 ];
