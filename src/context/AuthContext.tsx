@@ -18,7 +18,7 @@ type Logout = {type: "LOGOUT"}
 type AuthAction = Login | Logout
 
 const initialState: AuthState = {
-    user: null
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null
 };
 
 export const AuthContext = createContext<{ state: AuthState, dispatch: React.Dispatch<AuthAction> }>({state: initialState, dispatch: () => null})
@@ -36,15 +36,6 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 
 export const AuthContextProvider = ({children}: Props) => {
     const [state, dispatch] = useReducer(authReducer, initialState)
-
-    useEffect(() => {
-      const userString = localStorage.getItem('user')
-
-      if (userString) {
-        dispatch({type: "LOGIN", payload: JSON.parse(userString)})
-      }
-    }, [])
-    
 
     return (
         <AuthContext.Provider value={{state, dispatch}}>

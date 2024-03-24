@@ -7,6 +7,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import axios from 'axios'
 import { Project } from "../../context/ProjectContext";
 import { useProjectsContext } from "../../hooks/useProjectContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export const columns: ColumnDef<Project>[] = [
   {
@@ -40,10 +41,17 @@ export const columns: ColumnDef<Project>[] = [
     header: "Aksi",
     cell: ({ row }) => {
       const { dispatch } = useProjectsContext()
+      const {state} = useAuthContext()
 
       const deleteProject = async () => {
-        const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/projects/${row.original._id}`)
-        dispatch({type: "REMOVE_PROJECT", payload: res.data.data})
+        if(state.user) {
+          const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/projects/${row.original._id}`, {
+            headers: {
+              "Authorization": `Bearer ${state.user.token}`
+            }
+          })
+          dispatch({type: "REMOVE_PROJECT", payload: res.data.data})
+        }
       }
 
       return <>

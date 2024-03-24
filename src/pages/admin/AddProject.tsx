@@ -26,6 +26,8 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
 import axios, { FormSerializerOptions } from 'axios';
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+import { Link } from "react-router-dom";
 
 const formSchema = z.object({
   title: z.string().min(2).max(50),
@@ -52,6 +54,7 @@ function AddProject() {
   const navigate = useNavigate()
   const params = useParams()
   const addMode = !(params.id)
+  const {state, dispatch} = useAuthContext()
 
   const form = useForm<Portfolio>({
     resolver: zodResolver(formSchema),
@@ -82,7 +85,7 @@ function AddProject() {
   })
 
   useEffect(() => {
-    if(params.id) {
+    if(params.id && state.user) {
       const getData = async () => {
         try {
           const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`);
@@ -103,11 +106,19 @@ function AddProject() {
         }
       }
   
-      getData()
+      if (state.user) {
+        getData()
+      } else {
+        navigate("/login")
+      }
     }
   }, [params.id])
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (!state.user) {
+      return
+    }
+
     try {
       const formData = new FormData()
       const {images, ...rest} = values
@@ -141,16 +152,27 @@ function AddProject() {
       })
 
       if (addMode) {
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/projects`, formData)
+        if(!state.user) {
+          return
+        }
+
+        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/projects`, formData, {
+          headers: {
+            "Authorization": `Bearer ${state.user.token}`
+          }
+        })
         if (res.data.data) {
           navigate("/admin")
         }
       } else {
-        const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`, formData)
-        console.log(res)
-        // if (res.data.data) {
-        //   navigate("/admin")
-        // }
+        const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`, formData, {
+          headers: {
+            "Authorization": `Bearer ${state.user.token}`
+          }
+        })
+        if (res.data.data) {
+          navigate("/admin")
+        }
       }
     }catch (err) {
       console.log(err)
@@ -160,14 +182,14 @@ function AddProject() {
   return (
     <div className="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <h2 className="text-2xl font-bold">Tambahkan Portfolio</h2>
+        <h2 className="text-2xl font-bold">Tambahkan Project</h2>
 
         <nav>
           <ol className="flex items-center gap-2">
             <li>
-              <a className="font-medium" href="index.html">
+              <Link className="font-medium" to="/admin">
                 Dashboard /
-              </a>
+              </Link>
             </li>
             <li className="font-medium text-primary">Add Project</li>
           </ol>
@@ -416,7 +438,7 @@ function AddProject() {
                 </div>
 
                 <Button type="submit" variant="default" className="w-full py-6 mt-8">
-                  Add Portfolio
+                  {addMode? "Add": "Edit"} Project
                 </Button>
               </div>
             </form>

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useLogout } from "../../hooks/useLogout";
+import logo from "../../../public/logo.png"
 
 function Header() {
   const [open, setOpen] = useState<boolean>(false)
   const { logout } = useLogout()
+
   return (
     <header className="sticky top-0 flex w-full bg-black z-999 drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex items-center justify-between flex-grow px-4 py-4 shadow-2 md:px-6 2xl:px-11">
@@ -56,7 +58,7 @@ function Header() {
               <span className="hidden text-xs font-medium text-right lg:block">Welcome, Alfadli</span>
 
               <span className="h-8 rounded-full">
-                <img src="./logo.png" alt="User" className="h-full" />
+                <img src={logo} alt="User" className="h-full" />
               </span>
 
               <svg className="hidden fill-current sm:block" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
