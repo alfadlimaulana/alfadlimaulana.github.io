@@ -24,7 +24,7 @@ function Header() {
             </span>
           </button>
           <a className="flex-shrink-0 block lg:hidden" href="index.html">
-            <img src="./images/logo/logo-icon.svg" alt="Logo" />
+            <img src={logo} alt="Logo" />
           </a>
         </div>
         <div className="hidden sm:block">

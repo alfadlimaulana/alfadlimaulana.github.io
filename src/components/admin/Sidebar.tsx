@@ -6,9 +6,9 @@ function Sidebar() {
   const [openProjects, setOpenProjects] = useState<boolean>(false)
   return (
     <aside className="translate-x-0 absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear lg:static lg:translate-x-0">
-      <a className="px-6 py-5 lg:py-6" href="index.html">
+      <Link className="px-6 py-5 lg:py-6" to="/">
         <img src={logo} className="block w-8 mx-auto" alt="Logo" />
-      </a>
+      </Link>
 
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="px-4 py-4 lg:px-6">

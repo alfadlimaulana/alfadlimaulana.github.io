@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "../../components/ui/select"
 
-import { format, parse } from "date-fns";
+import { add, format, parse } from "date-fns";
 import { cn } from "../../../lib/utils";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { Calendar } from "../../components/ui/calendar";
@@ -38,7 +38,7 @@ const formSchema = z.object({
   jobDesc: z.array(z.object({
     desc: z.string().min(1)
   })),
-  images: z.union([z.instanceof(FileList), z.array(z.string())]).refine((file) => file?.length > 0, "File is required."),
+  images: z.union([z.instanceof(FileList), z.array(z.string())]),
   link: z.object({
     github: z.string().optional(),
     live: z.string().optional(),
@@ -81,7 +81,7 @@ function AddProject() {
   })
   const jobDescFields = useFieldArray({
     control,
-    name: "techStack"
+    name: "jobDesc"
   })
 
   useEffect(() => {
@@ -122,13 +122,13 @@ function AddProject() {
     try {
       const formData = new FormData()
       const {images, ...rest} = values
-
+      
       if (images instanceof FileList) {
         for (let i = 0; i < images.length; i++) {
           formData.append("images", images[i])
         }
       }
-
+  
       Object.keys(rest).forEach((key) => {
         const element = rest[key as keyof typeof rest]
         if (element !== null && typeof element === "object" && !Array.isArray(element)) {
@@ -137,7 +137,9 @@ function AddProject() {
           } else {
             Object.keys(element).forEach((elementKey) => {
               const value = element[elementKey as keyof typeof element]
-              formData.append(`${key}[${elementKey}]`,  value? value : '')
+              if (value) {
+                formData.append(`${key}[${elementKey}]`,  value)
+              }
             })
           }
         } else if (Array.isArray(element)) {
@@ -147,7 +149,9 @@ function AddProject() {
             })
           })
         } else {
-          formData.append(`${key}`, element? element : '')
+          if (element) {
+            formData.append(`${key}`, element)
+          }
         }
       })
 
@@ -330,7 +334,7 @@ function AddProject() {
                       )
                     })
                   }
-                  <Button type="button" onClick={() => jobDescFields.append({tech: ''})} variant="default" className="self-end px-6 py-2 h-fit">
+                  <Button type="button" onClick={() => jobDescFields.append({desc: ''})} variant="default" className="self-end px-6 py-2 h-fit">
                     +
                   </Button>
                 </div>
@@ -343,7 +347,7 @@ function AddProject() {
                       <FormLabel>Images</FormLabel>
                       <FormControl>
                         <Input type="file" className="file:bg-brand-yellow p-0 file:h-full file:px-8 text-white bg-transparent" multiple 
-                          onChange={(e) => field.onChange(e.target.files)} onBlur={field.onBlur} ref={field.ref} />
+                          onChange={(e) => field.onChange(e.target.files)} onBlur={field.onBlur} ref={field.ref} required={addMode}/>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -352,7 +356,7 @@ function AddProject() {
 
                 {
                   !addMode && form.getValues("images") && Array.isArray(form.getValues("images")) &&
-                  <div className="mb-4 flex gap-2">
+                  <div className="mb-4 flex flex-wrap gap-2">
                       { (form.getValues("images") as string[]).map((image, index) => {
                         return <img key={index} className="h-24" src={`${import.meta.env.VITE_API_URL}/${image}`}></img>
                       }) }

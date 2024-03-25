@@ -16,11 +16,7 @@ function Dashboard() {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects`, {
-          headers: {
-            "Authorization": `Bearer ${state.user?.token}`
-          }
-        });
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects`);
         projects.dispatch({type: "SET_PROJECTS", payload: res.data.data})
       } catch (error) {
         console.log(error)
