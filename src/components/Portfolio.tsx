@@ -31,7 +31,7 @@ const Portfolio = () => {
         {selectedProjects.map((project, index) => {
           return (
             <div key={index} data-aos="zoom-in" data-aos-duration="1200" className="relative w-full overflow-hidden rounded-md group aspect-video md:max-lg:aspect-square">
-              <img src={`${import.meta.env.VITE_API_URL}/${project.images?.[project.images.length - 1]}`} className="object-cover w-full aspect-video md:max-lg:aspect-square" />
+              <img src={`${import.meta.env.VITE_API_URL}/${project.images?.[0]}`} className="object-cover w-full aspect-video md:max-lg:aspect-square" />
               <div className="absolute flex flex-col justify-end w-full h-full p-8 transition-all bg-black scale-[1.002] max-md:-translate-y-full md:group-hover:-translate-y-full opacity-80">
                 <h2 className="text-xl font-semibold sm:text-3xl md:text-4xl">{project.title}</h2>
                 <Link to={`/project/${project._id}`} className="font-light text-brand-yellow">

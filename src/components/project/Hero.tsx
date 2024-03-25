@@ -1,14 +1,14 @@
 import { Options, Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
-import { useRef, useState } from "react";
 import FsLightbox from "fslightbox-react";
+import { useRef, useState } from "react";
 
 export interface Props {
   images?: string[];
 }
 
 const Hero = (props: Props) => {
-  const mainRef = useRef(null);
+  const mainRef = useRef<Splide>(null);
   const [toggler, setToggler] = useState(false);
   const handleThumbs = (id: number) => {
     if (mainRef.current) {
@@ -50,29 +50,29 @@ const Hero = (props: Props) => {
   return (
     <div className="flex w-full gap-4">
       <Splide options={mainOptions} ref={mainRef}>
-        {props.images.map((image, index) => {
+        {props.images?.map((image, index) => {
           return (
             <SplideSlide key={index} onClick={() => setToggler(!toggler)}>
-              <img src={`../img/${image}`} alt={`project img ${index}`} className="object-cover object-center w-full h-full rounded-lg" />
+              <img src={`${import.meta.env.VITE_API_URL}/${image}`} alt={`project img ${index}`} className="object-cover object-center w-full h-full rounded-lg" />
             </SplideSlide>
           );
         })}
       </Splide>
 
       <Splide options={thumbOptions} className="max-lg:hidden">
-        {props.images.map((thumbnail, index) => (
+        { props.images?.map((thumbnail, index) => (
           <SplideSlide key={index}>
             <button onClick={() => handleThumbs(index)} className="w-full h-full ">
-              <img src={`../img/${thumbnail}`} alt={`thumbnail img ${index}`} className="object-cover w-full h-full rounded-lg cursor-ceobject-center-pointer object" />
+              <img src={`${import.meta.env.VITE_API_URL}/${thumbnail}`} alt={`thumbnail img ${index}`} className="object-cover w-full h-full rounded-lg cursor-ceobject-center-pointer object" />
             </button>
           </SplideSlide>
-        ))}
+        )) }
       </Splide>
 
       <FsLightbox
         toggler={toggler}
-        sources={props.images.map((image, index) => {
-          return "../img/" + image;
+        sources={props.images?.map((image, index) => {
+          return `${import.meta.env.VITE_API_URL}/${image}`;
         })}
       />
     </div>

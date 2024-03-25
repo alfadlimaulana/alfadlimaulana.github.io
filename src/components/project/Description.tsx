@@ -1,62 +1,39 @@
 import { Globe, GithubLogo } from "@phosphor-icons/react";
-
-export interface Props {
-  title: string;
-  position: string;
-  startDate: string;
-  endDate?: string;
-  desc: string;
-  jobDesc: string[];
-  images: string[];
-  link?: {
-    github?: string;
-    live?: string;
-  };
-  techStack: string[];
-}
+import { Project } from "../../context/ProjectContext";
+import { format } from "date-fns";
 
 const getTechStack = (props: string): string => {
   switch (props) {
     case "laravel":
       return "laravel.png";
-      break;
     case "react":
       return "react.png";
-      break;
     case "tailwind":
       return "tailwind.png";
-      break;
     case "bootstrap":
       return "bootstrap.png";
-      break;
     case "next":
       return "next.png";
-      break;
     case "typescript":
       return "typescript.png";
-      break;
     case "php":
       return "php.png";
-      break;
     case "codeigniter":
       return "codeigniter.png";
-      break;
     case "alpine":
       return "alpine.png";
-      break;
     default:
       return ''
-      break;
   }
 };
 
-export const Description = (props: Props) => {
+export const Description = (props: Project) => {
   return (
     <div>
-      <section id="hero" className="flex gap-4 max-sm:flex-col sm:items-center sm:justify-between">
+      <section className="flex gap-4 max-sm:flex-col sm:items-center sm:justify-between">
         <div>
           <span>
-            {props.startDate} - {props.endDate}
+            {format(new Date(props.startDate), 'MMM yyyy')} - {props.endDate ? format(new Date(props.endDate), 'MMM yyyy') : "Present"}
           </span>
           <h1 className="text-4xl md:text-5xl text-brand-yellow md:mb-1">{props.title}</h1>
           <h2 className="text-xl font-light md:text-2xl">{props.position}</h2>
@@ -80,18 +57,18 @@ export const Description = (props: Props) => {
         <div className="mt-4">
           <h2 className="text-2xl">Job Description</h2>
           <ul className="px-4 list-disc list-outside">
-            {props.jobDesc.map((desc, index) => {
-              return <li key={index}>{desc}</li>;
+            {props.jobDesc?.map((item, index) => {
+              return <li key={index}>{item.desc}</li>;
             })}
           </ul>
         </div>
         <div className="mt-4">
           <h2 className="mb-1 text-2xl">Tech Stack</h2>
           <div className="flex gap-2">
-            {props.techStack.map((tech, index) => {
+            {props.techStack?.map((item, index) => {
               return (
                 <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay={index * 400} key={index} className="grid p-2 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
-                  <img src={`../img/${getTechStack(tech)}`} className="max-w-[60px]" />
+                  <img src={`../img/${getTechStack(item.tech as string)}`} className="max-w-[60px]" />
                 </a>
               );
             })}

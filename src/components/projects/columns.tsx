@@ -28,7 +28,7 @@ export const columns: ColumnDef<Project>[] = [
   {
     header: "Durasi",
     cell: ({ row }) => {
-      const monthDifference = differenceInMonths(new Date(row.original.endDate), new Date(row.original.startDate));
+      const monthDifference = row.original.endDate? differenceInMonths(new Date(row.original.endDate), new Date(row.original.startDate)) : "On progress";
       return <div>{monthDifference} Bulan</div>;
     },
   },

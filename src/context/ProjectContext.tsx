@@ -9,7 +9,7 @@ export interface Project {
     title: string,
     position: string
     startDate: string | Date,
-    endDate: string | Date,
+    endDate?: string | Date,
     desc?: string
     jobDesc?: {
         desc?: string
@@ -21,7 +21,7 @@ export interface Project {
     },
     techStack?: {
         tech?: string
-    },
+    }[],
 }
 
 interface ProjectsState {

@@ -32,7 +32,6 @@
     "clsx": "^1.2.1",
     "datatables.net-dt": "^1.13.10",
     "date-fns": "^3.3.1",
-    "fslightbox-react": "^1.7.6",
     "localforage": "^1.10.0",
     "lucide-react": "^0.256.0",
     "match-sorter": "^6.3.1",
@@ -49,6 +48,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@types/fslightbox-react": "^1.7.7",
     "@types/node": "^20.11.28",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
