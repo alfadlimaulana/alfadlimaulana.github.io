@@ -17,7 +17,7 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`);
+      const res = await axios.get(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`);
       const { __v, createdAt, updatedAt, ...rest} = res.data.data
 
       rest.techStack = rest.techStack.map((item: {tech:string}) => ({tech: item.tech}))

@@ -11,7 +11,7 @@ export const useLogin = () => {
         setLoading(true)
 
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/login`, user, {
+            const res = await axios.post(`https://portfolio-backend-3svr.onrender.com/api/login`, user, {
                 headers: {
                 "Content-Type": "application/json"
                 }

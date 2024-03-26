@@ -45,7 +45,7 @@ export const columns: ColumnDef<Project>[] = [
 
       const deleteProject = async () => {
         if(state.user) {
-          const res = await axios.delete(`${import.meta.env.VITE_API_URL}/api/projects/${row.original._id}`, {
+          const res = await axios.delete(`https://portfolio-backend-3svr.onrender.com/api/projects/${row.original._id}`, {
             headers: {
               "Authorization": `Bearer ${state.user.token}`
             }

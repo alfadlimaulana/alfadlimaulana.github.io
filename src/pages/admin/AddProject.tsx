@@ -88,7 +88,7 @@ function AddProject() {
     if(params.id && state.user) {
       const getData = async () => {
         try {
-          const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`);
+          const res = await axios.get(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`);
           const {_id, __v, createdAt, updatedAt, ...rest} = res.data.data
           rest.techStack = rest.techStack.map((item: {tech:string}) => ({tech: item.tech}))
           rest.jobDesc = rest.jobDesc.map((item: {desc:string}) => ({desc: item.desc}))
@@ -160,7 +160,7 @@ function AddProject() {
           return
         }
 
-        const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/projects`, formData, {
+        const res = await axios.post(`https://portfolio-backend-3svr.onrender.com/api/projects`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
@@ -169,7 +169,7 @@ function AddProject() {
           navigate("/admin")
         }
       } else {
-        const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/projects/${params.id}`, formData, {
+        const res = await axios.patch(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
@@ -358,7 +358,7 @@ function AddProject() {
                   !addMode && form.getValues("images") && Array.isArray(form.getValues("images")) &&
                   <div className="mb-4 flex flex-wrap gap-2">
                       { (form.getValues("images") as string[]).map((image, index) => {
-                        return <img key={index} className="h-24" src={`${import.meta.env.VITE_API_URL}/${image}`}></img>
+                        return <img key={index} className="h-24" src={`https://portfolio-backend-3svr.onrender.com/${image}`}></img>
                       }) }
                   </div>
                 }

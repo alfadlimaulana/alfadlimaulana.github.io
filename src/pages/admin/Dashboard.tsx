@@ -16,7 +16,7 @@ function Dashboard() {
   useEffect(() => {
     const getProjects = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/projects`);
+        const res = await axios.get(`https://portfolio-backend-3svr.onrender.com/api/projects`);
         projects.dispatch({type: "SET_PROJECTS", payload: res.data.data})
       } catch (error) {
         console.log(error)

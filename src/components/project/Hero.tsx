@@ -53,7 +53,7 @@ const Hero = (props: Props) => {
         {props.images?.map((image, index) => {
           return (
             <SplideSlide key={index} onClick={() => setToggler(!toggler)}>
-              <img src={`${import.meta.env.VITE_API_URL}/${image}`} alt={`project img ${index}`} className="object-cover object-center w-full h-full rounded-lg" />
+              <img src={`https://portfolio-backend-3svr.onrender.com/${image}`} alt={`project img ${index}`} className="object-cover object-center w-full h-full rounded-lg" />
             </SplideSlide>
           );
         })}
@@ -63,7 +63,7 @@ const Hero = (props: Props) => {
         { props.images?.map((thumbnail, index) => (
           <SplideSlide key={index}>
             <button onClick={() => handleThumbs(index)} className="w-full h-full ">
-              <img src={`${import.meta.env.VITE_API_URL}/${thumbnail}`} alt={`thumbnail img ${index}`} className="object-cover w-full h-full rounded-lg cursor-ceobject-center-pointer object" />
+              <img src={`https://portfolio-backend-3svr.onrender.com/${thumbnail}`} alt={`thumbnail img ${index}`} className="object-cover w-full h-full rounded-lg cursor-ceobject-center-pointer object" />
             </button>
           </SplideSlide>
         )) }
@@ -72,7 +72,7 @@ const Hero = (props: Props) => {
       <FsLightbox
         toggler={toggler}
         sources={props.images?.map((image, index) => {
-          return `${import.meta.env.VITE_API_URL}/${image}`;
+          return `https://portfolio-backend-3svr.onrender.com/${image}`;
         })}
       />
     </div>
