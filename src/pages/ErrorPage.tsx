@@ -3,8 +3,8 @@ import { useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 function ErrorPage() {
   const error = useRouteError();
-  let errorMessage: string;
-  let errorStatus: number;
+  let errorMessage: string = '';
+  let errorStatus: number|null = null;
 
   if (isRouteErrorResponse(error)) {
     // error is type `ErrorResponse`

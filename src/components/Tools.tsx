@@ -39,7 +39,7 @@ function Tools() {
           >
             {toolsImg.map((toolImg, index) => {
               return (
-                <SplideSlide className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
+                <SplideSlide key={index} className="grid p-6 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
                   <a>
                     <img src={`img/${toolImg}`} className="max-w-[60px]" />
                   </a>
