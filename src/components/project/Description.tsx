@@ -16,12 +16,16 @@ const getTechStack = (props: string): string => {
       return "next.png";
     case "typescript":
       return "typescript.png";
-    case "php":
-      return "php.png";
     case "codeigniter":
       return "codeigniter.png";
     case "alpine":
       return "alpine.png";
+    case "mysql":
+      return "mysql.png";
+    case "mongo":
+      return "mongo.png";
+    case "express":
+      return "express.png"
     default:
       return ''
   }

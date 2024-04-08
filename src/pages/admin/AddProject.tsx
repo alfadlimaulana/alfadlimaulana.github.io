@@ -89,12 +89,13 @@ function AddProject() {
       const getData = async () => {
         try {
           const res = await axios.get(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`);
+          // const res = await axios.get(`http://127.0.0.1:3000/api/projects/${params.id}`);
           const {_id, __v, createdAt, updatedAt, ...rest} = res.data.data
           rest.techStack = rest.techStack.map((item: {tech:string}) => ({tech: item.tech}))
           rest.jobDesc = rest.jobDesc.map((item: {desc:string}) => ({desc: item.desc}))
           rest.startDate = new Date(rest.startDate)
           rest.endDate = rest.endDate? new Date(rest.endDate) : null
-          delete rest.link._id
+          rest.link?._id && delete rest.link._id
           
           const project:Portfolio = rest
           Object.keys(project).forEach((item) => {
@@ -131,15 +132,13 @@ function AddProject() {
   
       Object.keys(rest).forEach((key) => {
         const element = rest[key as keyof typeof rest]
-        if (element !== null && typeof element === "object" && !Array.isArray(element)) {
+        if (element != null && typeof element === "object" && !Array.isArray(element)) {
           if (element instanceof Date) {
             formData.append(`${key}`, element? element.toISOString() : '')
           } else {
             Object.keys(element).forEach((elementKey) => {
               const value = element[elementKey as keyof typeof element]
-              if (value) {
-                formData.append(`${key}[${elementKey}]`,  value)
-              }
+              formData.append(`${key}[${elementKey}]`,  value ? value : '')
             })
           }
         } else if (Array.isArray(element)) {
@@ -161,6 +160,7 @@ function AddProject() {
         }
 
         const res = await axios.post(`https://portfolio-backend-3svr.onrender.com/api/projects`, formData, {
+        // const res = await axios.post(`http://127.0.0.1:3000/api/projects`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
@@ -170,10 +170,12 @@ function AddProject() {
         }
       } else {
         const res = await axios.patch(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`, formData, {
+        // const res = await axios.patch(`http://127.0.0.1:3000/api/projects/${params.id}`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
         })
+
         if (res.data.data) {
           navigate("/admin")
         }
@@ -417,9 +419,11 @@ function AddProject() {
                                     <SelectItem value="tailwind">tailwind</SelectItem>
                                     <SelectItem value="bootstrap">bootstrap</SelectItem>
                                     <SelectItem value="typescript">typescript</SelectItem>
-                                    <SelectItem value="php">php</SelectItem>
+                                    <SelectItem value="express">expressJS</SelectItem>
                                     <SelectItem value="codeigniter">codeigniter</SelectItem>
-                                    <SelectItem value="alpine">alpine</SelectItem>
+                                    <SelectItem value="alpine">alpineJS</SelectItem>
+                                    <SelectItem value="mysql">mySQL</SelectItem>
+                                    <SelectItem value="mongo">mongoDB</SelectItem>
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />

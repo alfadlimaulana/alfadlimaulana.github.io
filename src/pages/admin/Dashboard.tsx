@@ -17,13 +17,12 @@ function Dashboard() {
     const getProjects = async () => {
       try {
         const res = await axios.get(`https://portfolio-backend-3svr.onrender.com/api/projects`);
+        // const res = await axios.get(`http://127.0.0.1:3000/api/projects`);
         projects.dispatch({type: "SET_PROJECTS", payload: res.data.data})
       } catch (error) {
         console.log(error)
       }
     }
-
-    console.log(state.user)
 
     if (state.user) {
       getProjects()
