@@ -9,6 +9,7 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import AddProject from "./pages/admin/AddProject";
 import { useAuthContext } from "./hooks/useAuthContext";
 import ProjectDetail from "./pages/ProjectDetail";
+import Projects from "./pages/Projects";
 
 function App() {
   const {state, dispatch} = useAuthContext()
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="login" element={<Login />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="project/:id" element={<ProjectDetail />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>

@@ -71,7 +71,7 @@ export const Description = (props: Project) => {
           <div className="flex gap-2">
             {props.techStack?.map((item, index) => {
               return (
-                <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay={index * 400} key={index} className="grid p-2 border rounded-md place-items-center bg-brand-blue border-brand-yellow">
+                <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay={index * 400} key={index} className="grid p-2 border rounded-md place-items-center bg-brand-grey border-brand-yellow">
                   <img src={`../img/${getTechStack(item.tech as string)}`} className="max-w-[60px]" />
                 </a>
               );

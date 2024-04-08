@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Project } from "../context/ProjectContext";
+import { Skeleton } from "../components/ui/skeleton";
 
 const ProjectDetail = () => {
   const [project, setProject] = useState<Project>({
@@ -29,15 +30,16 @@ const ProjectDetail = () => {
 
     getData()
   }, []);
-
-  useEffect(() => {
-    console.log(project)
-  }, [project])
   
 
   return (
     <div className="container flex flex-col justify-center min-h-screen gap-4 py-8 sm:pt-24">
-      <Hero images={project?.images as string[]} />
+      {
+        project ?
+        <Hero images={project?.images as string[]} />
+        :
+        <Skeleton className="w-full h-[422px] rounded-md group" />
+      }
       <Description {...project} />
     </div>
   );
