@@ -32,7 +32,7 @@ const SelectedProjects = () => {
     <section id="portfolio">
       <div className="container grid gap-4 place-items-center md:grid-cols-2">
         <div className="p-4 justify-self-start">
-          <h1 className="mb-2 text-5xl text-brand-yellow">Selected Projects</h1>
+          <h1 className="mb-2 text-4xl md:text-5xl text-brand-yellow">Selected Projects</h1>
           <p className="mb-6">Here's the top 3 of my projects that I consider the best.</p>
           <Link to={'/projects'} className={buttonVariants({ variant: "default" })}>More Projects</Link>
         </div>

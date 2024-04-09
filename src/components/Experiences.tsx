@@ -5,10 +5,10 @@ const Experiences = () => {
   return (
     <section id="experiences">
       <div className="container">
-        <h1 className="mb-4 text-5xl text-brand-yellow text-center">Track Record</h1>
+        <h1 className="mb-4 text-4xl md:text-5xl text-brand-yellow md:text-center">Track Record</h1>
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="mb-2 text-3xl">Work Experience</h2>
+            <h2 className="mb-2 text-2xl md:text-3xl">Work Experience</h2>
             <Accordion type="single" collapsible className="w-full">
               {data.work.map((work) => {
                 return (
@@ -19,7 +19,7 @@ const Experiences = () => {
                           <span className="text-sm font-light text-brand-yellow whitespace-nowrap">
                             {work.startDate} - {work.endDate}
                           </span>
-                          <h3 className="text-2xl">{work.position}</h3>
+                          <h3 className="text-xl md:text-2xl">{work.position}</h3>
                         </div>
                         <a href={work.companyLink} target="_blank" className="mr-6 font-light md:ml-auto hover:text-brand-yellow">
                           {work.company}
@@ -39,7 +39,7 @@ const Experiences = () => {
             </Accordion>
           </div>
           <div>
-            <h2 className="mb-2 text-3xl">Education</h2>
+            <h2 className="mb-2 text-2xl md:text-3xl">Education</h2>
             <Accordion type="single" collapsible className="w-full">
               {data.education.map((edu, index) => {
                 return (
@@ -50,7 +50,7 @@ const Experiences = () => {
                           <span className="text-sm font-light text-brand-yellow whitespace-nowrap">
                             {edu.startDate} - {edu.endDate}
                           </span>
-                          <h3 className="text-2xl">{edu.degree}</h3>
+                          <h3 className="text-xl md:text-2xl">{edu.degree}</h3>
                         </div>
                         <span className="mr-6 font-light md:ml-auto">{edu.school}</span>
                       </div>

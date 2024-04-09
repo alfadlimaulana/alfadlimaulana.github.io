@@ -2,6 +2,7 @@ import { TypeAnimation } from "react-type-animation";
 import { At, InstagramLogo, LinkedinLogo, DownloadSimple, GithubLogo } from "@phosphor-icons/react";
 
 const Hero = () => {
+  const sequence = ["Computer Science Bachelor", 1500, "Laravel Developer", 1500, "MERN Developer", 1500]
   return (
     <section id="hero" className="sm:py-8">
       <div className="container flex justify-center min-h-screen gap-12 md:items-center max-md:flex-col">
@@ -9,7 +10,7 @@ const Hero = () => {
           <div>
             <h1 className="text-5xl xl:text-7xl leading-[52px] mb-0.5">Alfadli Siddik</h1>
             <h2 className="mb-4 text-3xl font-light xl:text-4xl">
-              A <TypeAnimation sequence={["Computer Science Student", 1500, "Front End Web Developer", 1500]} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
+              A <TypeAnimation sequence={sequence} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
             </h2>
             <p className="mb-6 leading-relaxed">
               My name is Alfadli Maulana Siddik, a highly disciplined student with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
