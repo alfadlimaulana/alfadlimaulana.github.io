@@ -1,5 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
-import { At, InstagramLogo, LinkedinLogo, DownloadSimple, GithubLogo } from "@phosphor-icons/react";
+import { At, InstagramLogo, LinkedinLogo, GithubLogo } from "@phosphor-icons/react";
 
 const Hero = () => {
   const sequence = ["Computer Science Bachelor", 1500, "Laravel Developer", 1500, "MERN Developer", 1500]
@@ -13,7 +13,7 @@ const Hero = () => {
               A <TypeAnimation sequence={sequence} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
             </h2>
             <p className="mb-6 leading-relaxed">
-              My name is Alfadli Maulana Siddik, a highly disciplined student with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
+              My name is Alfadli Maulana Siddik, a highly disciplined person with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
               create meaningful online solutions.
             </p>
           </div>
@@ -29,9 +29,6 @@ const Hero = () => {
             </a>
             <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1200" href="https://github.com/alfadlims" target="_blank" className="sosmed">
               <GithubLogo weight="bold" className="sosmed-icon" />
-            </a>
-            <a data-aos="fade-up" data-aos-duration="2500" data-aos-delay="1600" href="" className="flex items-center h-12 px-6 font-bold text-black rounded-full hover:bg-brand-white bg-brand-yellow w-fit">
-              <DownloadSimple weight="bold" className="mr-2 sosmed-icon"></DownloadSimple> CV
             </a>
           </div>
         </div>

@@ -30,6 +30,11 @@ const Nav = () => {
               Contact
             </HashLink>
           </li>
+          <li className="px-5 py-0 list-none">
+            <a target="_blank" className="text-brand-blue hover:text-brand-grey" href="https://medium.com/@alfadlimaulana">
+              Blog
+            </a>
+          </li>
         </ul>
       </div>
       <div className="absolute grid w-20 -translate-x-1/2 left-1/2 place-items-center bg-brand-yellow sm:hidden" onClick={() => setnavOpen(!navOpen)}>
