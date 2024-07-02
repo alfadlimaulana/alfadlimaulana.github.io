@@ -26,6 +26,16 @@ const getTechStack = (props: string): string => {
       return "mongo.png";
     case "express":
       return "express.png"
+    case "swift":
+      return "swift.png"
+    case "swiftui":
+      return "swiftui.png"
+    case "swiftdata":
+      return "swiftdata.png"
+    case "healthkit":
+      return "healthkit.png"
+    case "avfoundation":
+      return "avfoundation.png"
     default:
       return ''
   }

@@ -424,6 +424,11 @@ function AddProject() {
                                     <SelectItem value="alpine">alpineJS</SelectItem>
                                     <SelectItem value="mysql">mySQL</SelectItem>
                                     <SelectItem value="mongo">mongoDB</SelectItem>
+                                    <SelectItem value="swift">Swift</SelectItem>
+                                    <SelectItem value="swiftui">SwiftUI</SelectItem>
+                                    <SelectItem value="swiftdata">SwiftData</SelectItem>
+                                    <SelectItem value="healthkit">HealthKit</SelectItem>
+                                    <SelectItem value="avfoundation">AVFoundation</SelectItem>
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
