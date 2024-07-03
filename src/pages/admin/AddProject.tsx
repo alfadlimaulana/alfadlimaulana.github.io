@@ -159,8 +159,8 @@ function AddProject() {
           return
         }
 
-        const res = await axios.post(`https://portfolio-backend-3svr.onrender.com/api/projects`, formData, {
-        // const res = await axios.post(`http://127.0.0.1:3000/api/projects`, formData, {
+        // const res = await axios.post(`https://portfolio-backend-3svr.onrender.com/api/projects`, formData, {
+        const res = await axios.post(`http://127.0.0.1:3000/api/projects`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
@@ -169,8 +169,8 @@ function AddProject() {
           navigate("/admin")
         }
       } else {
-        const res = await axios.patch(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`, formData, {
-        // const res = await axios.patch(`http://127.0.0.1:3000/api/projects/${params.id}`, formData, {
+        // const res = await axios.patch(`https://portfolio-backend-3svr.onrender.com/api/projects/${params.id}`, formData, {
+        const res = await axios.patch(`http://127.0.0.1:3000/api/projects/${params.id}`, formData, {
           headers: {
             "Authorization": `Bearer ${state.user.token}`
           }
