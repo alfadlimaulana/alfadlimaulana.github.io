@@ -36,6 +36,10 @@ const getTechStack = (props: string): string => {
       return "healthkit.png"
     case "avfoundation":
       return "avfoundation.png"
+    case "uikit":
+      return "uikit.png"
+    case "corelocation":
+      return "corelocation.png"
     default:
       return ''
   }

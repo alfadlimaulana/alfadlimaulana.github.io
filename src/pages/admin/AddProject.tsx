@@ -429,6 +429,8 @@ function AddProject() {
                                     <SelectItem value="swiftdata">SwiftData</SelectItem>
                                     <SelectItem value="healthkit">HealthKit</SelectItem>
                                     <SelectItem value="avfoundation">AVFoundation</SelectItem>
+                                    <SelectItem value="uikit">UIKit</SelectItem>
+                                    <SelectItem value="corelocation">CoreLocation</SelectItem>
                                   </SelectContent>
                                 </Select>
                                 <FormMessage />
