@@ -13,8 +13,7 @@ const Hero = () => {
               A <TypeAnimation sequence={sequence} wrapper="span" speed={50} className="text-brand-yellow" repeat={Infinity} />
             </h2>
             <p className="mb-6 leading-relaxed">
-              My name is Alfadli Maulana Siddik, a highly disciplined person with an unwavering commitment to self-improvement. Fascinated by the digital landscape and its endless possibilities, I have specialized in web development to
-              create meaningful online solutions.
+              Bachelor's degree in Computer Science with 2 years of experience in the IT industry as a freelance front-end web developer and 10 months as iOS Developer. Expertise in developing both web and iOS applications. Proficient in Next.js, TypeScript, Laravel, and Swift. Skilled at converting designs into fully responsive user interfaces and integrating them with APIs for dynamic functionality.
             </p>
           </div>
           <div className="flex gap-2">
